@@ -1,0 +1,25 @@
+/*  Valid Parentheses
+    Link : https://leetcode.com/problems/valid-parentheses/
+*/
+class Solution {
+public:
+    bool isValid(string s) {
+       stack<int>st;
+        for(auto ch:s){
+            if(ch=='(' || ch=='{' || ch=='['){//taking all the opening brackets
+                st.push(ch);
+            }
+            else{
+                if(st.empty()) return false;// is there any opening brackts or not 
+                else if(ch==')' && st.top()!='(')//a closing bracket then any opening brackets there same way we are checking 
+                    return false;
+                else if(ch=='}' && st.top()!='{')
+                    return false;
+                else if(ch==']' && st.top()!='[')
+                    return false;
+                st.pop();
+            }
+        }
+        return st.empty();//if stack empty then it will return true;
+    }
+};
